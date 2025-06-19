@@ -9,9 +9,9 @@ spec:
         server: "https://kubernetes.default.svc"
     project: default
     source:
-        path: "./k-node-express"
-        # repoURL: "http://github.com/kahshiu/k-node-express"
-        # targetRevision: main
+        path: k-node-express
+        repoURL: "https://github.com/kahshiu/k-config.git"
+        targetRevision: main
     syncPolicy:
         syncOptions:
             - CreateNamespace=true

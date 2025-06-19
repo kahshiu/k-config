@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: node-express
-          image: kahshiu/k-node-express:1.0.0
+          image: kahshiu/k-node-express:v1.0.1
