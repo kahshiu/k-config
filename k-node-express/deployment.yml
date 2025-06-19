@@ -19,5 +19,11 @@ spec:
           env:
             - name: COMMIT
               value: "333"
+          #  - name: ENV
+          #    value: "production"
+          # NOTE: not so grea, mapping value per entry!
             - name: ENV
-              value: "production"
+              valueFrom:
+                configMapKeyRef:
+                  name: k-node-express-config
+                  key: ENV

@@ -1,8 +1,8 @@
 using configMap
+apply ingress nginxh
 
 publish helm-charts
 apply helm-charts
-apply ingress nginxh
 
 1. argoCD - DONE 
 - apply app on argoCD

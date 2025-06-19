@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k-node-express-config
+  namespace: my-test
+data:
+  COMMIT: "444"
+  ENV: "production-1"

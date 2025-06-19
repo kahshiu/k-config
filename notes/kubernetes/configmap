@@ -1,0 +1,10 @@
+config maps
+-------------
+kubectl apply -f {path-to-configmap}
+kubectl apply -f k-node-express/configMap.yml
+kubectl get configmap 
+kubectl describe configmap k-node-express-config -n my-test 
+
+**Note 
+After changing configmap, will need to create new pods to reflect new configmap content
+OR you can update configmap map -- configmap-file.metadata.name -- therefore enforcing a reboot/ refresh of pods
