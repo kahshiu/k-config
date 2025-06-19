@@ -15,15 +15,21 @@ spec:
       containers:
         - name: node-express
           image: kahshiu/k-node-express:v1.0.1
-          # hardcode environment variables
-          env:
-            - name: COMMIT
-              value: "333"
-          #  - name: ENV
-          #    value: "production"
-          # NOTE: not so grea, mapping value per entry!
-            - name: ENV
-              valueFrom:
-                configMapKeyRef:
-                  name: k-node-express-config
-                  key: ENV
+          ## # hardcode environment variables
+          ## env:
+          ##   - name: COMMIT
+          ##     value: "333"
+          ## #  - name: ENV
+          ## #    value: "production"
+          ## # NOTE: not so grea, mapping value per entry!
+          ##   - name: ENV
+          ##     valueFrom:
+          ##       configMapKeyRef:
+          ##         name: k-node-express-config
+          ##         key: ENV
+
+          # NOTE: consume entire file, note values of this file and configmap are MERGED
+          # possibly see pod failure due to configmap not loaded yet (if name were changed) but pods already booted up
+          envFrom: 
+          - configMapRef:
+              name: k-node-express-config
