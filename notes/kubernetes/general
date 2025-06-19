@@ -1,0 +1,7 @@
+kubectl get all --all-namespaces
+kubectl get all --all-namespaces -o wide
+
+kubectl get ingress --all-namespaces
+kubectl get ingress --all-namespaces -o wide
+kubectl get ingress --all-namespaces -o yaml
+kubectl get ingress --all-namespaces -o json

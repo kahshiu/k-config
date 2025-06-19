@@ -1,0 +1,12 @@
+https://docs.rancherdesktop.io/how-to-guides/setup-NGINX-Ingress-Controller
+
+1. disable default on rancher - traefik
+2. install nginx
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+
+
+
+kubectl create ingress demo-localhost --class=nginx --rule="demo.localtest.me/*=demo:80"
+kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
