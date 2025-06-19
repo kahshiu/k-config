@@ -1,0 +1,82 @@
+Installation Guide
+1. create namespace in kubernetes 
+2. install using non-ha
+```
+kubecl get nodes
+kubectl create namespace argocd
+kubectl get namespaces
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get all -n argocd
+kubectl get pods -n argocd
+```
+
+- Non-HA:
+a. cluster-admin privileges: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+b. namespace level privileges: https://github.com/argoproj/argo-cd/raw/stable/manifests/namespace-install.yaml
+
+- HA:
+a. cluster-admin privileges: https://github.com/argoproj/argo-cd/raw/stable/manifests/ha/install.yaml
+b. namespace level privileges: https://github.com/argoproj/argo-cd/raw/stable/manifests/ha/namespace-install.yaml
+
+- Light installation "Core" https://github.com/argoproj/argo-cd/raw/stable/manifests/core-install.yaml
+- Helm chart: https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+
+***********
+Getting the generated secrets
+```
+kubectl get secrets -n argocd
+kubectl get secrets argocd-initial-admin-secret -n argocd -o yaml
+kubectl get secrets argocd-initial-admin-secret -n argocd -o jsonpath='{.data.password}' | base64 -d
+
+echo $(kubectl get secrets argocd-initial-admin-secret -n argocd -o jsonpath='{.data.password}' | base64 -d)
+```
+
+```
+argocd-initial-admin-secret   Opaque   1      3m26s <-- this one
+argocd-notifications-secret   Opaque   0      4m52s
+argocd-redis                  Opaque   1      3m40s
+argocd-secret                 Opaque   5      4m52s
+```
+secret: n36B611b07VmpDDd
+
+***********
+The need to expose argocd to external world
+- turn to loadbalancer
+- apply an ingress server
+- port forward
+```
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+
+```
+argocd-applicationset-controller          ClusterIP   10.43.255.221   <none>        7000/TCP,8080/TCP            13m
+argocd-dex-server                         ClusterIP   10.43.34.12     <none>        5556/TCP,5557/TCP,5558/TCP   13m
+argocd-metrics                            ClusterIP   10.43.241.104   <none>        8082/TCP                     13m
+argocd-notifications-controller-metrics   ClusterIP   10.43.182.203   <none>        9001/TCP                     13m
+argocd-redis                              ClusterIP   10.43.129.131   <none>        6379/TCP                     13m
+argocd-repo-server                        ClusterIP   10.43.39.175    <none>        8081/TCP,8084/TCP            13m
+argocd-server                             ClusterIP   10.43.235.20    <none>        80/TCP,443/TCP               13m <-- this is our server
+argocd-server-metrics                     ClusterIP   10.43.232.89    <none>        8083/TCP                     13m
+```
+
+Install ArgoCD CLI
+https://argo-cd.readthedocs.io/en/stable/cli_installation/
+
+```
+## probe available version
+VERSION=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+echo $VERSION 
+## prints: v3.0.6
+
+## install
+curl -sSL -o argocd-darwin-arm64 https://github.com/argoproj/argo-cd/releases/download/v3.0.6/argocd-darwin-arm64
+sudo install -m 555 argocd-darwin-arm64 /usr/local/bin/argocd
+rm argocd-darwin-arm64
+```
+
+```
+argocd version
+argocd login localhost:8080
+argocd cluster list
+```

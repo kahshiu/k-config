@@ -1,0 +1,20 @@
+- webui
+- application cli
+- yaml spec
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: node-express
+    namespace: argocd
+spec:
+    destination:
+        namespace: my-test
+        server: "https://kubernetes.default.svc"
+    project: default
+    source:
+        repoURL: "http://github.com/kahshiu/k-node-express"
+        targetRevision: main
+    syncPolicy:
+        syncOptions:
+            - CreateNamespace=true
