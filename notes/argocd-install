@@ -80,3 +80,15 @@ argocd version
 argocd login localhost:8080
 argocd cluster list
 ```
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: <namespace>  # Replace <namespace> with your actual namespace
+data:
+  exec.enabled: "true" <-- enable terminal
+
+```
+kubectl edit configmap argocd-cm -n argocd
+```
