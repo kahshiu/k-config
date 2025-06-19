@@ -15,3 +15,9 @@ spec:
       containers:
         - name: node-express
           image: kahshiu/k-node-express:v1.0.1
+          # hardcode environment variables
+          env:
+            - name: COMMIT
+              value: "333"
+            - name: ENV
+              value: "production"

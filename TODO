@@ -1,5 +1,11 @@
-argoCD
-different environments
+using configMap
+
 publish helm-charts
 apply helm-charts
 apply ingress nginxh
+
+1. argoCD - DONE 
+- apply app on argoCD
+- auto-sync
+
+2. hardcode different environments variables - DONE
