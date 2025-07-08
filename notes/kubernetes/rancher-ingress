@@ -6,7 +6,30 @@ helm upgrade --install ingress-nginx ingress-nginx \
   --repo https://kubernetes.github.io/ingress-nginx \
   --namespace ingress-nginx --create-namespace
 
+kubectl create deployment demo --image=httpd --port=80
+kubectl expose deployment demo
+kubectl create ingress demo-localhost --class=nginx \
+  --rule="local.nodeexpress.com/*=demo:80"
 
+
+kubectl create ingress --class=nginx \
+  --rule="local.nodeexpress.com/*=demo:3000"
+
+
+
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace my-test --create-namespace
 
 kubectl create ingress demo-localhost --class=nginx --rule="demo.localtest.me/*=demo:80"
 kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
+
+*****
+introduce local domain name
+/etc/hosts
+
+127.0.0.1 local.cluster.com
+
+
+
+kubectl apply -f argocd/ingress-argocd.yml -n argocd

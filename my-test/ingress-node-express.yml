@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: nodeexpress.cluster.local
+    - host: nodeexpress.cluster.com
       http:
         paths:
           # - path: /argocd(/|$)(.*)

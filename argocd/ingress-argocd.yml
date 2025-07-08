@@ -11,7 +11,7 @@ metadata:
     # nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-    - host: argocd.cluster.local
+    - host: argocd.cluster.com
       http:
         paths:
           # - path: /argocd(/|$)(.*)
