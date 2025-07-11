@@ -16,5 +16,5 @@
 - helm repo add shiu-helms https://kahshiu.github.io/k-helm-charts/
 - helm repo list
 - helm search repo express
-- 
-helm install local-charts shiu-helms/node-express-chart
+- helm install local-charts shiu-helms/node-express-chart
+- helm create app-2
