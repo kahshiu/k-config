@@ -10,4 +10,11 @@
 
 - helm package --help
 - helm package my-charts
-
+- NOTE will be packages according to version, not appVersion
+- helm install local-charts node-express-chart-1.0.1.tgz
+- helm repo index . (initiate index for yaml in current directory)
+- helm repo add shiu-helms https://kahshiu.github.io/k-helm-charts/
+- helm repo list
+- helm search repo express
+- 
+helm install local-charts shiu-helms/node-express-chart
