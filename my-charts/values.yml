@@ -1,0 +1,15 @@
+# parent ones
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# sending values to subcharts
+postgresql:
+  fullnameOverride: 'testing postgresql'
+  # subchart will capture using .Values.fullnameOverrides
+
+global:
+  test: 'testing'
+  # subchart will capture using .Values.global.testing

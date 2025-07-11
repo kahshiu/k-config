@@ -14,3 +14,6 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm dependency update # update the lockfile
 helm dependency build
 
+helm template .
+
+how to propagate values from parent to child charts
