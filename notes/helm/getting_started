@@ -7,3 +7,7 @@
 
 - .Release.Name - the local name for installation
 - .Chart.Name - the project/ repo name
+
+- helm package --help
+- helm package my-charts
+
