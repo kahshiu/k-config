@@ -4,3 +4,12 @@ description: helm chart of node-express
 type: application
 version: 1.0.1
 appVersion: 1.0.1
+
+## subcharts
+dependencies: 
+##  - name: mongodb
+##    version: 16.2.1
+##    repository: 
+  - name: postgresql # question, how to make sure its from a particular repo?
+    version: '16.7.16'
+    repository: 'https://charts.bitnami.com/bitnami'

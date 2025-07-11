@@ -1,0 +1,16 @@
+- helm dependency list <chart-dir>
+- liveness/ readiness probe
+- ingress
+- metric server
+
+helm repo list
+helm repo update
+helm search repo postgres
+
+
+https://helm.sh/docs/topics/charts/
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm dependency update # update the lockfile
+helm dependency build
+
