@@ -1,0 +1,9 @@
+- folder that contains helm charts to be targeted
+- Chart.yaml
+- helm template my-charts
+
+- helm install local-charts my-charts -n my-test 
+- helm uninstall local-charts my-charts -n my-test
+
+- .Release.Name - the local name for installation
+- .Chart.Name - the project/ repo name

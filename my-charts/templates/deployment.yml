@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-express
+  annotations:
+    "kubectl.kubernetes.io/cascade-delete": "background"
+spec:
+  selector:
+    matchLabels:
+      app: node-express
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: node-express
+    spec:
+      containers:
+        - name: node-express
+          image: kahshiu/k-node-express:v1.0.1
+          ## envFrom: 
+          ## - configMapRef:
+          ##     name: k-node-express-config

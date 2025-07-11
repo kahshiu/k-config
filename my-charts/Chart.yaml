@@ -1,0 +1,6 @@
+apiVersion: v2
+name: node-express-chart
+description: helm chart of node-express
+type: application
+version: 1.0.1
+appVersion: 1.0.1
